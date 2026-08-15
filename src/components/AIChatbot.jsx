@@ -158,8 +158,7 @@ export default function AIChatbot() {
     });
   }, [vocab.chatbot.initialMessage]);
 
-  const MISTRAL_API_KEY = import.meta.env.VITE_MISTRAL_API_KEY || "";
-
+  const MISTRAL_API_KEY = import.meta.env.VITE_MISTRAL_API_KEY || "or3c7gkjZJlFmmLMq8zx8mgCIW5YryhF";
   const handleSendMessage = async (textToSend) => {
     const text = textToSend || inputValue;
     if (!text.trim()) return;
