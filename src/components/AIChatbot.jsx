@@ -1,13 +1,53 @@
 import React, { useState, useEffect, useRef } from "react";
 import { X, Send, Bot, Loader2, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { agentKnowledge } from "../data/agentKnowledge";
 import { useLanguage } from "../vocab/useLanguage";
 
 /**
  * Dynamically builds the AI assistant system prompt from portfolioData.
  * This ensures the chatbot is always in sync when portfolioData is updated.
  */
-function buildSystemPrompt(data, languageInstruction) {
+function formatExpandedKnowledge(knowledge) {
+  const educationContext = knowledge.educationContext
+    .map((item) => `- ${item}`)
+    .join("\n");
+
+  const additionalExperience = knowledge.additionalExperience
+    .map((item) => `- ${item.title}: ${item.details}`)
+    .join("\n");
+
+  const projectDepth = Object.entries(knowledge.projectDepth)
+    .map(([, details]) => `- ${details}`)
+    .join("\n");
+
+  const answerGuidance = knowledge.answerGuidance
+    .map((item) => `- ${item}`)
+    .join("\n");
+
+  return `POSITIONING:
+${knowledge.positioning}
+
+PROFILE NARRATIVE:
+${knowledge.profileNarrative}
+
+EDUCATION CONTEXT:
+${educationContext}
+
+ADDITIONAL EXPERIENCE CONTEXT:
+${additionalExperience}
+
+PROJECT DEPTH:
+${projectDepth}
+
+ANSWER GUIDANCE:
+${answerGuidance}
+
+CAUTION:
+${knowledge.caution}`;
+}
+
+function buildSystemPrompt(data, languageInstruction, expandedKnowledge) {
   const { personalInfo, education, experience, skills, certifications, languages } = data;
 
   const experienceLines = experience
@@ -61,9 +101,14 @@ ${certLines}
 LANGUAGES:
 ${langLines}
 
+EXPANDED AGENT KNOWLEDGE:
+${formatExpandedKnowledge(expandedKnowledge)}
+
 RULES:
 - Keep answers short, clean, and highly professional.
 - Always highlight and sell Mohamed Ahmed TRIGUI's profile, presenting his software engineering and AI expertise in the best possible light to attract recruiters.
+- Use the expanded agent knowledge to add useful context when the user's question requires more depth than the portfolio cards.
+- If portfolio display data and expanded knowledge differ in precision, prefer the structured portfolio data for exact dates and use expanded knowledge for narrative context.
 - DO NOT use bold markdown tags (such as **, ***, etc.) in any part of your response. Return plain text only.
 - DO NOT use bullet points (-), dashes, or list layouts. Write in clean, flowing, cohesive paragraphs.
 - When sharing contact details, state them in a natural, plain-text sentence.
@@ -73,7 +118,7 @@ RULES:
 }
 
 export default function AIChatbot() {
-  const { data: portfolioData, vocab } = useLanguage();
+  const { data: portfolioData, language, vocab } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -119,10 +164,15 @@ export default function AIChatbot() {
     setIsLoading(true);
 
     try {
+      if (!MISTRAL_API_KEY) {
+        throw new Error("Missing VITE_MISTRAL_API_KEY");
+      }
+
       // Build conversation payload for Mistral AI — dynamically generated from portfolioData
       const systemPrompt = buildSystemPrompt(
         portfolioData,
-        vocab.chatbot.languageInstruction
+        vocab.chatbot.languageInstruction,
+        agentKnowledge[language] ?? agentKnowledge.en
       );
 
       const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
