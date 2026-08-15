@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ArrowRight, Download, Linkedin, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
 import { scrollToSection } from "../utils/scroll";
-import { useLanguage } from "../vocab/LanguageContext";
+import { useLanguage } from "../vocab/useLanguage";
 
 export default function Hero() {
   const { data, vocab } = useLanguage();

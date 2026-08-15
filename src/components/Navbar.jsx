@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Globe2, Menu, X, Terminal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { scrollToSection } from "../utils/scroll";
-import { useLanguage } from "../vocab/LanguageContext";
+import { useLanguage } from "../vocab/useLanguage";
 
 const NAV_ITEMS = [
   { id: "home", target: "#home" },

@@ -127,59 +127,71 @@ export const fr = {
     experience: {
       autodispatch: {
         role: "Stagiaire Ingenieur Logiciel - Projet de fin d'etudes",
+        period: "Fevrier 2026 - Juin 2026",
         details: "Conception et developpement d'AutoDispatch, une plateforme intelligente de dispatch livraison destinee a automatiser, superviser et optimiser l'affectation des livreurs. Implementation d'un moteur de routage configurable, d'interfaces de supervision temps reel, de modeles IA pour l'estimation du temps de preparation, d'un agent LLM pour les rapports de performance des livreurs et d'un assistant vocal conversationnel pour aider les operateurs.",
       },
       smartalpr: {
         role: "Stagiaire IA & Computer Vision",
+        period: "Octobre 2025 - Janvier 2026",
         details: "Conception de SmartALPR, un systeme intelligent de reconnaissance automatique des plaques tunisiennes. Realisation d'un pipeline complet combinant computer vision et IA generative, avec detection YOLO, extraction OCR, RAG, LLMs et un agent IA reglementaire pour produire des rapports de conformite vehicule.",
       },
       nutrishape: {
         role: "Stagiaire Ingenieur IA - Stage de perfectionnement",
+        period: "Juin 2025 - Aout 2025",
         details: "Conception et developpement de NutriShape AI, une solution IA pour estimer automatiquement les mensurations corporelles a partir d'images 2D. Developpement d'un systeme multimodal utilisant PyTorch, U-Net et T5 pour generer des objectifs d'entrainement, des plans alimentaires et des recommandations personnalisees.",
       },
       videoconf: {
         role: "Stagiaire Deep Learning - Projet de fin d'annee",
+        period: "Janvier 2025 - Avril 2025",
         details: "Developpement d'une application de visioconference intelligente integrant des modeles deep learning temps reel pour analyser l'engagement des etudiants. Combinaison de computer vision pour detecter expressions et postures, analyse de sentiment sur flux image et NLP sur le chat afin d'estimer comprehension et participation.",
       },
       costestimation: {
         role: "Stagiaire Machine Learning - Stage d'initiation",
+        period: "Juillet 2024",
         details: "Developpement d'un outil predictif de machine learning pour l'estimation des couts de construction. Travail sur le preprocessing, le feature engineering, l'analyse exploratoire et le benchmark de modeles d'ensemble comme Bagging, Boosting et Stacking pour obtenir des estimations fiables.",
       },
       expertisemanagement: {
         role: "Stagiaire Developpeur Full-Stack - Projet bachelor",
+        period: "Fevrier 2023 - Mai 2023",
         details: "Conception et developpement d'une application web full-stack pour digitaliser les workflows internes d'un cabinet d'expertise, structurer les dossiers clients, suivre les interventions et ameliorer la collaboration entre experts, employes et clients.",
       },
     },
     projects: {
       autodispatch: {
         type: "Projet de fin d'etudes",
+        period: "Fevrier 2026 - Juin 2026",
         headline: "Plateforme intelligente de dispatch livraison alimentee par l'IA",
         description: "AutoDispatch est une plateforme end-to-end concue pour automatiser, superviser et optimiser la logistique de livraison. En automatisant l'affectation des livreurs via un moteur d'auto-dispatch configurable, elle resout des contraintes de routage complexes en temps reel. La plateforme integre des dashboards dynamiques, le suivi des commandes et des composants IA : estimation du temps de preparation, agent LLM de reporting de performance livreur et assistant vocal base sur Whisper et agents conversationnels.",
       },
       smartalpr: {
         type: "Projet IA generative, agent IA & Full-Stack",
+        period: "Octobre 2025 - Janvier 2026",
         headline: "Systeme intelligent de reconnaissance de plaques tunisiennes",
         description: "Systeme ALPR end-to-end adapte aux plaques tunisiennes. Il integre la detection YOLO pour extraire les plaques, l'OCR pour reconnaitre les caracteres et un pipeline RAG connecte a un LLM. Le systeme embarque aussi un agent IA reglementaire capable de repondre aux questions de conformite vehicule et de generer automatiquement des rapports PDF structures.",
         focusLabel: "GenAI + Agent + Full-Stack",
       },
       nutrishape: {
         type: "Projet IA generative",
+        period: "Juin 2025 - Aout 2025",
         headline: "Systeme IA de mensurations corporelles et recommandations",
         description: "Solution fitness intelligente concue pour estimer les dimensions corporelles a partir d'images 2D. Avec U-Net pour la segmentation et des modeles de regression, la plateforme extrait des mesures corporelles cles. Ces donnees sont combinees au profil utilisateur via un transformeur multimodal T5 afin de generer des programmes d'entrainement, objectifs nutritionnels et recommandations personnalisees.",
         focusLabel: "IA generative",
       },
       videoconf: {
         type: "Projet academique",
+        period: "Janvier 2025 - Avril 2025",
         headline: "Analyse IA temps reel de l'engagement etudiant",
         description: "Outil de visioconference e-learning integrant une telemetrie IA en direct pour suivre l'attention et l'engagement des etudiants. Il combine YOLO, Vision Transformers, analyse de sentiment et NLP sur le chat afin de fournir aux enseignants un tableau de bord d'engagement en temps reel via WebSockets.",
       },
       costestimation: {
         type: "Projet Machine Learning",
+        period: "Juillet 2024",
         headline: "Estimateur predictif base sur le machine learning",
         description: "Pipeline de machine learning developpe pour predire les couts de genie civil et de construction. Le projet se concentre sur le preprocessing avance des donnees, la gestion des outliers, l'encodage, la normalisation, la selection de features et le benchmark de modeles d'ensemble comme Bagging, Boosting, XGBoost et Stacking.",
       },
       expertisemanagement: {
         type: "Projet bachelor",
+        period: "Fevrier 2023 - Mai 2023",
         headline: "Dashboard de digitalisation et suivi interne",
         description: "Application web full-stack developpee pour digitaliser les workflows internes d'un cabinet d'expertise. Elle centralise les dossiers, gere les affectations d'experts terrain, automatise les notifications client et offre des espaces de collaboration securises entre administration, experts et clients.",
       },

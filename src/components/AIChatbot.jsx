@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { X, Send, Bot, Loader2, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { portfolioData } from "../data/portfolioData";
+import { useLanguage } from "../vocab/useLanguage";
 
 /**
  * Dynamically builds the AI assistant system prompt from portfolioData.
  * This ensures the chatbot is always in sync when portfolioData is updated.
  */
-function buildSystemPrompt(data) {
+function buildSystemPrompt(data, languageInstruction) {
   const { personalInfo, education, experience, skills, certifications, languages } = data;
 
   const experienceLines = experience
@@ -34,7 +34,7 @@ function buildSystemPrompt(data) {
   return `You are Mohamed's AI Portfolio Assistant, an elite representation of Mohamed Ahmed TRIGUI.
 Mohamed is a Software Engineer specialized in Full-Stack development and Artificial Intelligence.
 Your goal is to answer recruiters and tech companies' questions about Mohamed in a professional, concise, and technical tone.
-Respond in the language the user speaks to you (French or English).
+${languageInstruction}
 Only use the following factual information from Mohamed's CV:
 
 IDENTITY & CONTACT:
@@ -73,11 +73,12 @@ RULES:
 }
 
 export default function AIChatbot() {
+  const { data: portfolioData, vocab } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello! I am Mohamed's AI Assistant. Ask me anything about his projects, experience, technical skills, or availability!"
+      content: vocab.chatbot.initialMessage
     }
   ]);
   const [inputValue, setInputValue] = useState("");
@@ -90,6 +91,19 @@ export default function AIChatbot() {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages, isLoading]);
+
+  useEffect(() => {
+    setMessages((currentMessages) => {
+      if (
+        currentMessages.length === 1 &&
+        currentMessages[0].role === "assistant"
+      ) {
+        return [{ role: "assistant", content: vocab.chatbot.initialMessage }];
+      }
+
+      return currentMessages;
+    });
+  }, [vocab.chatbot.initialMessage]);
 
   const MISTRAL_API_KEY = import.meta.env.VITE_MISTRAL_API_KEY || "or3c7gkjZJlFmmLMq8zx8mgCIW5YryhF";
 
@@ -106,7 +120,10 @@ export default function AIChatbot() {
 
     try {
       // Build conversation payload for Mistral AI — dynamically generated from portfolioData
-      const systemPrompt = buildSystemPrompt(portfolioData);
+      const systemPrompt = buildSystemPrompt(
+        portfolioData,
+        vocab.chatbot.languageInstruction
+      );
 
       const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
         method: "POST",
@@ -140,7 +157,7 @@ export default function AIChatbot() {
         ...newMessages,
         {
           role: "assistant",
-          content: "Sorry, I had trouble connecting to my cognitive models. Please try again in a few seconds or contact Mohamed directly."
+          content: vocab.chatbot.errorMessage
         }
       ]);
     } finally {
@@ -154,12 +171,7 @@ export default function AIChatbot() {
     }
   };
 
-  const PRESET_QUESTIONS = [
-    "Tell me about AutoDispatch project.",
-    "What are Mohamed's AI & RAG skills?",
-    "Is he available for job offers?",
-    "Show me his certifications."
-  ];
+  const PRESET_QUESTIONS = vocab.chatbot.presetQuestions;
 
   return (
     <>
@@ -175,7 +187,7 @@ export default function AIChatbot() {
             className="hidden sm:flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-white border border-border-custom shadow-premium cursor-pointer text-xs font-bold text-primary hover:text-primary-dark group hover:border-primary/30"
           >
             <Sparkles className="w-3.5 h-3.5 text-accent animate-pulse" />
-            <span>Ask my AI Agent!</span>
+            <span>{vocab.chatbot.invite}</span>
           </motion.div>
         )}
 
@@ -187,7 +199,7 @@ export default function AIChatbot() {
               ? "rounded-full"
               : "rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] hover:rounded-full"
             }`}
-          aria-label="Toggle AI assistant"
+          aria-label={vocab.chatbot.toggleAria}
         >
           {isOpen ? (
             <X className="w-6 h-6" />
@@ -224,12 +236,12 @@ export default function AIChatbot() {
                 </div>
                 <div className="text-left">
                   <h3 className="font-heading font-bold text-sm tracking-wide flex items-center gap-1">
-                    Mohamed's AI Assistant
+                    {vocab.chatbot.title}
                     <Sparkles className="w-3 h-3 text-accent animate-pulse" />
                   </h3>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[10px] text-white/80 font-medium">Online</span>
+                    <span className="text-[10px] text-white/80 font-medium">{vocab.chatbot.status}</span>
                   </div>
                 </div>
               </div>
@@ -266,7 +278,7 @@ export default function AIChatbot() {
                 <div className="flex justify-start text-left">
                   <div className="bg-white text-text-primary border border-border-custom shadow-soft p-3.5 rounded-2xl rounded-tl-none flex items-center gap-2">
                     <Loader2 className="w-4 h-4 text-primary animate-spin" />
-                    <span className="text-xs font-medium text-text-secondary">Assistant is thinking...</span>
+                    <span className="text-xs font-medium text-text-secondary">{vocab.chatbot.thinking}</span>
                   </div>
                 </div>
               )}
@@ -276,7 +288,7 @@ export default function AIChatbot() {
             {/* Quick Helper Questions (when chat starts or is idle) */}
             {messages.length === 1 && (
               <div className="p-3 bg-slate-50 border-t border-border-custom/50">
-                <p className="text-[10px] font-bold text-text-secondary/70 uppercase tracking-wider mb-2 text-left px-1">Suggested questions:</p>
+                <p className="text-[10px] font-bold text-text-secondary/70 uppercase tracking-wider mb-2 text-left px-1">{vocab.chatbot.suggested}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {PRESET_QUESTIONS.map((q) => (
                     <button
@@ -299,14 +311,14 @@ export default function AIChatbot() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 disabled={isLoading}
-                placeholder="Ask about my projects, stack..."
+                placeholder={vocab.chatbot.placeholder}
                 className="flex-1 px-4 py-2.5 rounded-xl border border-border-custom text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:bg-slate-50"
               />
               <button
                 onClick={() => handleSendMessage()}
                 disabled={isLoading || !inputValue.trim()}
                 className="p-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white shadow-soft transition-colors disabled:opacity-50 shrink-0"
-                aria-label="Send message"
+                aria-label={vocab.chatbot.sendAria}
               >
                 <Send className="w-4.5 h-4.5" />
               </button>

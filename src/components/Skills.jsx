@@ -1,53 +1,46 @@
 import React from "react";
 import { Cpu, Terminal, Database, Sparkles, Layers, ShieldCheck, GitBranch, Binary } from "lucide-react";
 import { motion } from "framer-motion";
-import { portfolioData } from "../data/portfolioData";
+import { useLanguage } from "../vocab/useLanguage";
 
 const categoryMeta = {
   programming: {
-    label: "Programming Languages",
     icon: Binary,
     color: "from-blue-500 to-indigo-500"
   },
   frontend_backend: {
-    label: "Frontend & Backend Frameworks",
     icon: Layers,
     color: "from-cyan-500 to-blue-500"
   },
   databases: {
-    label: "Databases & Design",
     icon: Database,
     color: "from-teal-500 to-emerald-500"
   },
   machine_learning: {
-    label: "Machine Learning & Analysis",
     icon: Cpu,
     color: "from-purple-500 to-pink-500"
   },
   deep_learning_computer_vision: {
-    label: "Deep Learning & Computer Vision",
     icon: Terminal,
     color: "from-orange-500 to-red-500"
   },
   generative_ai: {
-    label: "Generative AI & Agents",
     icon: Sparkles,
     color: "from-violet-600 to-indigo-600"
   },
   backend_api: {
-    label: "APIs & Integration",
     icon: ShieldCheck,
     color: "from-sky-500 to-blue-600"
   },
   devops: {
-    label: "DevOps & Tools",
     icon: GitBranch,
     color: "from-slate-600 to-zinc-700"
   }
 };
 
 export default function Skills() {
-  const { skills } = portfolioData;
+  const { data, vocab } = useLanguage();
+  const { skills } = data;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -79,7 +72,7 @@ export default function Skills() {
             viewport={{ once: true, margin: "-100px" }}
             className="font-heading font-extrabold text-3xl sm:text-4xl text-text-primary mb-4"
           >
-            Technical Expertise
+            {vocab.skills.title}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, width: 0 }}
@@ -88,7 +81,7 @@ export default function Skills() {
             className="h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mx-auto mb-6"
           />
           <p className="text-text-secondary text-lg leading-relaxed">
-            A comprehensive mapping of full-stack engineering practices, machine learning pipelines, and advanced artificial intelligence toolkits.
+            {vocab.skills.description}
           </p>
         </div>
 
@@ -101,8 +94,9 @@ export default function Skills() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {Object.entries(skills).map(([key, list]) => {
-            const meta = categoryMeta[key] || { label: key, icon: Cpu, color: "from-blue-500 to-indigo-500" };
+            const meta = categoryMeta[key] || { icon: Cpu, color: "from-blue-500 to-indigo-500" };
             const Icon = meta.icon;
+            const label = vocab.skills.categories[key] || key;
             
             return (
               <motion.div
@@ -117,7 +111,7 @@ export default function Skills() {
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="font-heading font-bold text-base text-text-primary group-hover:text-primary transition-colors duration-200 leading-tight">
-                      {meta.label}
+                      {label}
                     </h3>
                   </div>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Cpu, Terminal, Layers, Eye, Bot, Sparkles } from "lucide-react";
-import { portfolioData } from "../data/portfolioData";
+import { useLanguage } from "../vocab/useLanguage";
 
 const iconMap = {
   "Software Engineering": Terminal,
@@ -9,11 +9,17 @@ const iconMap = {
   "Full-Stack Development": Layers,
   "Generative AI & LLMs": Sparkles,
   "Computer Vision": Eye,
-  "AI Agents & RAG": Bot
+  "AI Agents & RAG": Bot,
+  "Ingenierie logicielle": Terminal,
+  "Intelligence Artificielle": Cpu,
+  "Developpement Full-Stack": Layers,
+  "IA generative & LLMs": Sparkles,
+  "Agents IA & RAG": Bot
 };
 
 export default function About() {
-  const { about } = portfolioData;
+  const { data } = useLanguage();
+  const { about } = data;
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },

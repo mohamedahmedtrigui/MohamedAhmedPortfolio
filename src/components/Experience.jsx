@@ -1,10 +1,11 @@
 import React from "react";
 import { Briefcase, Calendar, MapPin, Terminal } from "lucide-react";
 import { motion } from "framer-motion";
-import { portfolioData } from "../data/portfolioData";
+import { useLanguage } from "../vocab/useLanguage";
 
 export default function Experience() {
-  const { experience } = portfolioData;
+  const { data, vocab } = useLanguage();
+  const { experience } = data;
 
   return (
     <section id="experience" className="py-24 bg-white relative">
@@ -19,7 +20,7 @@ export default function Experience() {
             viewport={{ once: true, margin: "-100px" }}
             className="font-heading font-extrabold text-3xl sm:text-4xl text-text-primary mb-4"
           >
-            Work Experience
+            {vocab.experience.title}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, width: 0 }}
@@ -89,7 +90,7 @@ export default function Experience() {
                     {/* Project Headline and details */}
                     <div className="mb-4">
                       <div className="inline-block text-xs font-semibold px-2.5 py-1 rounded-md bg-bg-secondary text-primary border border-border-custom mb-2">
-                        Project: {item.project}
+                        {vocab.experience.project} {item.project}
                       </div>
                       <p className="text-text-secondary text-sm leading-relaxed">
                         {item.details}

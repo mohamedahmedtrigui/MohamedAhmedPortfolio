@@ -1,10 +1,11 @@
 import React from "react";
 import { Award, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { portfolioData } from "../data/portfolioData";
+import { useLanguage } from "../vocab/useLanguage";
 
 export default function Certifications() {
-  const { certifications } = portfolioData;
+  const { data, vocab } = useLanguage();
+  const { certifications } = data;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -36,7 +37,7 @@ export default function Certifications() {
             viewport={{ once: true, margin: "-100px" }}
             className="font-heading font-extrabold text-3xl sm:text-4xl text-text-primary mb-4"
           >
-            Licenses & Certifications
+            {vocab.certifications.title}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, width: 0 }}
@@ -45,7 +46,7 @@ export default function Certifications() {
             className="h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mx-auto mb-6"
           />
           <p className="text-text-secondary text-lg leading-relaxed">
-            Professional development, industry-recognized certificates, and credentials specialized in AI development, LangGraph, and RAG.
+            {vocab.certifications.description}
           </p>
         </div>
 
@@ -83,7 +84,7 @@ export default function Certifications() {
                 </div>
                 <div className="flex items-center justify-between mt-3 pt-2 border-t border-border-custom/50">
                   <span className="text-[11px] font-bold text-text-secondary/70 bg-bg-secondary px-2 py-0.5 rounded-md border border-border-custom">
-                    Issued {cert.year}
+                    {vocab.certifications.issued} {cert.year}
                   </span>
                   {cert.credentialUrl ? (
                     <a
@@ -91,9 +92,9 @@ export default function Certifications() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 text-[11px] font-bold text-primary hover:text-accent transition-colors duration-200"
-                      aria-label={`Verify ${cert.name} credential`}
+                      aria-label={`${vocab.certifications.verify} ${cert.name}`}
                     >
-                      Verify
+                      {vocab.certifications.verify}
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   ) : (

@@ -1,9 +1,10 @@
 import React from "react";
 import { Terminal, Linkedin, Mail, ArrowUp } from "lucide-react";
-import { portfolioData } from "../data/portfolioData";
+import { useLanguage } from "../vocab/useLanguage";
 
 export default function Footer() {
-  const { personalInfo } = portfolioData;
+  const { data, vocab } = useLanguage();
+  const { personalInfo } = data;
 
   const handleScrollTop = () => {
     window.scrollTo({
@@ -19,7 +20,7 @@ export default function Footer() {
         <button
           onClick={handleScrollTop}
           className="p-3 rounded-full bg-white hover:bg-primary hover:text-white text-text-primary border border-border-custom shadow-soft hover:shadow-premium transition-all duration-300 group hover:-translate-y-1"
-          aria-label="Scroll to top"
+          aria-label={vocab.footer.scrollTop}
         >
           <ArrowUp className="w-5 h-5 group-hover:animate-bounce" />
         </button>
@@ -39,7 +40,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-xs text-text-secondary/80 font-normal order-3 md:order-2">
-          &copy; {new Date().getFullYear()} Mohamed Ahmed TRIGUI. All rights reserved.
+          &copy; {new Date().getFullYear()} Mohamed Ahmed TRIGUI. {vocab.footer.rights}
         </p>
 
         {/* Social Icons */}
@@ -49,14 +50,14 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-bg-secondary hover:bg-primary hover:text-white text-text-secondary transition-all duration-200 border border-border-custom"
-            aria-label="Visit Mohamed's LinkedIn profile"
+            aria-label={vocab.footer.linkedinAria}
           >
             <Linkedin className="w-4.5 h-4.5" />
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
             className="p-2.5 rounded-full bg-bg-secondary hover:bg-primary hover:text-white text-text-secondary transition-all duration-200 border border-border-custom"
-            aria-label="Send Mohamed an email"
+            aria-label={vocab.footer.emailAria}
           >
             <Mail className="w-4.5 h-4.5" />
           </a>

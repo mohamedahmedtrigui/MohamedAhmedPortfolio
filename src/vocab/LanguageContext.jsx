@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { portfolioData } from "../data/portfolioData";
 import { eng } from "./eng";
 import { fr } from "./fr";
+import { LanguageContext } from "./useLanguage";
 
 const VOCAB = { eng, fr };
 
@@ -14,8 +15,6 @@ const projectIdByName = {
   "Predictive Construction Cost Estimation": "costestimation",
   "Expertise Management Platform": "expertisemanagement",
 };
-
-const LanguageContext = createContext(null);
 
 function readInitialLanguage() {
   if (typeof window === "undefined") return "eng";
@@ -88,13 +87,4 @@ export function LanguageProvider({ children }) {
       {children}
     </LanguageContext.Provider>
   );
-}
-
-export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used inside LanguageProvider");
-  }
-
-  return context;
 }

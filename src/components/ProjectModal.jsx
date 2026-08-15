@@ -39,7 +39,7 @@ function ProjectImageCard({ src, alt }) {
   );
 }
 
-export default function ProjectModal({ project, onClose }) {
+export default function ProjectModal({ project, onClose, vocab }) {
   const [isZoomed, setIsZoomed] = useState(false);
 
   if (!project) return null;
@@ -68,7 +68,7 @@ export default function ProjectModal({ project, onClose }) {
           <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2.5 rounded-full bg-white/90 hover:bg-primary hover:text-white border border-border-custom/50 shadow-soft text-text-primary transition-all duration-200 z-30 cursor-pointer"
-            aria-label="Close project modal"
+            aria-label={vocab.projects.modal.close}
           >
             <X className="w-5 h-5" />
           </button>
@@ -87,7 +87,7 @@ export default function ProjectModal({ project, onClose }) {
               >
                 <span className="px-4 py-2 bg-white/95 text-primary text-xs font-bold rounded-full shadow-premium flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 select-none">
                   <Maximize className="w-3.5 h-3.5" />
-                  Zoom Screenshot
+                  {vocab.projects.modal.zoom}
                 </span>
               </div>
             </div>
@@ -115,13 +115,13 @@ export default function ProjectModal({ project, onClose }) {
               <div className="flex items-center gap-2.5 text-sm text-text-secondary">
                 <Briefcase className="w-4 h-4 text-primary" />
                 <span>
-                  <strong>Organization:</strong> {project.organization}
+                  <strong>{vocab.projects.modal.organization}</strong> {project.organization}
                 </span>
               </div>
               <div className="flex items-center gap-2.5 text-sm text-text-secondary">
                 <Calendar className="w-4 h-4 text-primary" />
                 <span>
-                  <strong>Timeline:</strong> {project.period}
+                  <strong>{vocab.projects.modal.timeline}</strong> {project.period}
                 </span>
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function ProjectModal({ project, onClose }) {
             {/* Description Detail */}
             <div className="mb-8">
               <h4 className="font-heading font-bold text-lg text-text-primary mb-3">
-                Project Description & Solution
+                {vocab.projects.modal.descriptionTitle}
               </h4>
               <p className="text-text-secondary text-base leading-relaxed whitespace-pre-line">
                 {project.description}
@@ -140,7 +140,7 @@ export default function ProjectModal({ project, onClose }) {
             <div>
               <h4 className="font-heading font-bold text-lg text-text-primary mb-4 flex items-center gap-2">
                 <Tag className="w-5 h-5 text-primary" />
-                Technology Stack
+                {vocab.projects.modal.stack}
               </h4>
               <div className="flex flex-wrap gap-2.5">
                 {project.technologies.map((tech) => (
@@ -173,7 +173,7 @@ export default function ProjectModal({ project, onClose }) {
             <button
               onClick={() => setIsZoomed(false)}
               className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-[110]"
-              aria-label="Close zoom"
+              aria-label={vocab.projects.modal.closeZoom}
             >
               <Minimize className="w-6 h-6" />
             </button>

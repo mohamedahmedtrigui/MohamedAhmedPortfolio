@@ -1,75 +1,11 @@
-import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { portfolioData } from "../data/portfolioData";
+import React from "react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import { useLanguage } from "../vocab/useLanguage";
 
 export default function Contact() {
-  const { personalInfo } = portfolioData;
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-  
-  const [formStatus, setFormStatus] = useState("idle"); // idle | sending | sent
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-
-    setFormStatus("sending");
-    
-    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY || "";
-    
-    if (!accessKey || accessKey === "your_web3forms_key_here") {
-      console.warn("Web3Forms access key is not set. Simulating mail send. Set VITE_WEB3FORMS_KEY in your env.");
-      // Fallback for visual review
-      setTimeout(() => {
-        setFormStatus("sent");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      }, 1200);
-      return;
-    }
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject || "Portfolio Message from " + formData.name,
-          message: formData.message,
-          from_name: "Portfolio Visitor"
-        })
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setFormStatus("sent");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        console.error("Web3Forms error response:", data);
-        setFormStatus("error");
-      }
-    } catch (err) {
-      console.error("Web3Forms network error:", err);
-      setFormStatus("error");
-    }
-  };
+  const { data, vocab } = useLanguage();
+  const { personalInfo } = data;
 
   return (
     <section id="contact" className="py-24 bg-bg-secondary relative">
@@ -88,13 +24,13 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-text-primary mb-4 leading-tight">
-                Let's Build <br />
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Something Intelligent.</span>
+                {vocab.contact.titleStart} <br />
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{vocab.contact.titleHighlight}</span>
               </h2>
               <div className="h-1.5 w-20 bg-gradient-to-r from-primary to-accent rounded-full mb-8" />
               
               <p className="text-text-secondary text-base sm:text-lg mb-10 leading-relaxed font-normal">
-                Interested in Software Engineering, Artificial Intelligence, Full-Stack development, or innovative AI agents and computer vision systems? Let's connect and discuss opportunities.
+                {vocab.contact.description}
               </p>
             </motion.div>
 
@@ -109,7 +45,7 @@ export default function Contact() {
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">Email Me</h4>
+                  <h4 className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">{vocab.contact.email}</h4>
                   <a href={`mailto:${personalInfo.email}`} className="text-text-primary hover:text-primary font-semibold text-sm sm:text-base transition-colors duration-200">
                     {personalInfo.email}
                   </a>
@@ -125,7 +61,7 @@ export default function Contact() {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">Call Me</h4>
+                  <h4 className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">{vocab.contact.phone}</h4>
                   <a href={`tel:${personalInfo.phone}`} className="text-text-primary hover:text-primary font-semibold text-sm sm:text-base transition-colors duration-200">
                     {personalInfo.phone}
                   </a>
@@ -141,7 +77,7 @@ export default function Contact() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">Location</h4>
+                  <h4 className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-0.5">{vocab.contact.location}</h4>
                   <span className="text-text-primary font-semibold text-sm sm:text-base">
                     {personalInfo.location}
                   </span>

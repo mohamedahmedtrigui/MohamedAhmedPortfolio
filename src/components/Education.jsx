@@ -1,10 +1,11 @@
 import React from "react";
 import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { motion } from "framer-motion";
-import { portfolioData } from "../data/portfolioData";
+import { useLanguage } from "../vocab/useLanguage";
 
 export default function Education() {
-  const { education } = portfolioData;
+  const { data, vocab } = useLanguage();
+  const { education } = data;
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -28,7 +29,7 @@ export default function Education() {
             viewport={{ once: true, margin: "-100px" }}
             className="font-heading font-extrabold text-3xl sm:text-4xl text-text-primary mb-4"
           >
-            Education & Background
+            {vocab.education.title}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, width: 0 }}
@@ -59,7 +60,7 @@ export default function Education() {
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-text-secondary/80 mb-3 uppercase tracking-wider">
                 <span className="flex items-center gap-1.5 bg-bg-secondary px-2.5 py-1 rounded-md border border-border-custom text-primary">
                   <Calendar className="w-3.5 h-3.5" />
-                  Class of {edu.year}
+                  {vocab.education.classOf} {edu.year}
                 </span>
                 <span className="flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5" />
@@ -88,7 +89,7 @@ export default function Education() {
               <div className="mt-auto pt-4 border-t border-border-custom flex items-start gap-2.5 text-sm text-text-secondary">
                 <Award className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-text-primary font-medium">Specialization:</strong>{" "}
+                  <strong className="text-text-primary font-medium">{vocab.education.specialization}</strong>{" "}
                   {edu.specialization}
                 </div>
               </div>

@@ -7,8 +7,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { portfolioData } from "../data/portfolioData";
 import ProjectModal from "./ProjectModal";
+import { useLanguage } from "../vocab/useLanguage";
 
 function getProjectTone(project) {
   if (project.focusLabel) {
@@ -93,7 +93,7 @@ function ProjectVisual({ project }) {
   );
 }
 
-function ProjectCard({ project, onSelect }) {
+function ProjectCard({ project, onSelect, vocab }) {
   const tone = getProjectTone(project);
 
   return (
@@ -112,7 +112,7 @@ function ProjectCard({ project, onSelect }) {
         {project.featured && (
           <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-md border border-white/45 bg-white/90 px-2.5 py-1 text-[11px] font-extrabold text-slate-950 shadow-soft backdrop-blur">
             <Sparkles className="h-3.5 w-3.5 text-[#F59E0B]" />
-            Featured
+            {vocab.projects.featured}
           </span>
         )}
       </div>
@@ -160,7 +160,7 @@ function ProjectCard({ project, onSelect }) {
           ))}
           {project.technologies.length > 5 && (
             <span className="rounded-md border border-primary/20 bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
-              +{project.technologies.length - 5} more
+              +{project.technologies.length - 5} {vocab.projects.more}
             </span>
           )}
         </div>
@@ -170,7 +170,8 @@ function ProjectCard({ project, onSelect }) {
 }
 
 export default function Projects() {
-  const { projects } = portfolioData;
+  const { data, vocab } = useLanguage();
+  const { projects } = data;
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
@@ -188,7 +189,7 @@ export default function Projects() {
               className="mb-4 inline-flex items-center gap-2 rounded-md border border-primary/15 bg-white px-3 py-1 text-xs font-extrabold uppercase text-primary shadow-soft"
             >
               <Sparkles className="h-3.5 w-3.5 text-[#F59E0B]" />
-              Selected Work
+              {vocab.projects.eyebrow}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 18 }}
@@ -196,7 +197,7 @@ export default function Projects() {
               viewport={{ once: true, margin: "-100px" }}
               className="font-heading text-3xl font-extrabold leading-tight text-text-primary sm:text-4xl"
             >
-              Engineering projects built around AI, systems, and usable products.
+              {vocab.projects.title}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 18 }}
@@ -205,7 +206,7 @@ export default function Projects() {
               transition={{ delay: 0.05 }}
               className="mt-4 max-w-2xl text-base leading-relaxed text-text-secondary"
             >
-              A cleaner view of Mohamed's strongest work, grouped by technical focus and designed for quick comparison.
+              {vocab.projects.description}
             </motion.p>
           </div>
         </div>
@@ -217,6 +218,7 @@ export default function Projects() {
                 key={project.id}
                 project={project}
                 onSelect={setSelectedProject}
+                vocab={vocab}
               />
             ))}
           </AnimatePresence>
@@ -228,6 +230,7 @@ export default function Projects() {
           <ProjectModal
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
+            vocab={vocab}
           />
         )}
       </AnimatePresence>
