@@ -17,6 +17,11 @@ const projectIdByName = {
   "Expertise Management Platform": "expertisemanagement",
 };
 
+const educationIdBySchool = {
+  "International Institute of Technology": "iit",
+  "National School of Electronics and Telecommunications": "enetcom",
+};
+
 function readInitialLanguage() {
   if (typeof window === "undefined") return "eng";
 
@@ -59,7 +64,7 @@ function localizeData(baseData, vocab) {
     })),
     education: baseData.education.map((item) => ({
       ...item,
-      ...(overrides.education?.[item.degree] ?? {}),
+      ...(overrides.education?.[educationIdBySchool[item.school]] ?? {}),
       schoolLogo: assetUrl(item.schoolLogo),
     })),
   };

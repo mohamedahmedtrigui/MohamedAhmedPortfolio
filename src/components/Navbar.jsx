@@ -52,7 +52,7 @@ export default function Navbar() {
   const handleNavClick = (e, target) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    scrollToSection(target, 80);
+    scrollToSection(target, 112);
     setActiveSection(target.substring(1));
   };
 

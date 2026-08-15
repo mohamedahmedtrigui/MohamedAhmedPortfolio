@@ -197,12 +197,14 @@ export const fr = {
       },
     },
     education: {
-      "Engineering Degree â€” Software Engineering & Business Intelligence": {
+      iit: {
         degree: "Diplome d'ingenieur - Genie logiciel & Business Intelligence",
+        school: "Institut International de Technologie",
         specialization: "Intelligence Artificielle avancee",
       },
-      "Bachelor's Degree in Information Technology": {
+      enetcom: {
         degree: "Licence en technologies de l'information",
+        school: "Ecole Nationale d'Electronique et des Telecommunications",
         specialization: "Telecommunications",
       },
     },
