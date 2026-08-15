@@ -29,7 +29,7 @@ export const agentKnowledge = {
       {
         title: "MiralDrive and intelligent logistics context",
         details:
-          "At Miral Development, his work is connected to MiralDrive and intelligent components around delivery operations. AutoDispatch combines Laravel, React, MySQL, Python, FastAPI, a configurable auto-dispatch engine, real-time monitoring, assignment optimization, machine learning time estimation, an LLM reporting agent, and a voice assistant using OpenAI Whisper and conversational agents.",
+          "At Miral Development, his work is connected to MiralDrive and intelligent mobility operations. The public technology context includes Laravel, React, MySQL, Python, FastAPI, REST APIs, real-time systems, and AI integration, but answers should avoid internal architecture, proprietary dispatch logic, and company-specific implementation details.",
       },
     ],
     projectDepth: {
@@ -46,7 +46,7 @@ export const agentKnowledge = {
       "When asked about strengths, highlight practical delivery, applied AI, full-stack ownership, automation mindset, and ability to transform manual business processes into intelligent systems.",
       "When asked about SmartALPR, mention computer vision, generative AI, RAG, LLMs, regulatory analysis, AI agent capabilities, and report generation.",
       "When asked about NutriShape AI, describe it as a generative AI and multimodal recommendation project, not merely machine learning.",
-      "When asked what Mohamed is currently doing, say he is working with Miral Development on MiralDrive, a real-time mobility platform for rides, drivers, clients, and intelligent ride assignment.",
+      "When asked what Mohamed is currently doing, say he is working with Miral Development on MiralDrive, a real-time mobility platform for rides, drivers, clients, and intelligent mobility workflows. Mention the main technologies only briefly.",
       "When asked about early background, mention telecommunications, networks, information systems, Agile/Scrum, ERP Sage X3, and Python automation only as supporting context.",
     ],
     caution:
@@ -82,7 +82,7 @@ export const agentKnowledge = {
       {
         title: "MiralDrive et logistique intelligente",
         details:
-          "Chez Miral Development, son travail est lie a MiralDrive et a des composants intelligents autour des operations de livraison. AutoDispatch combine Laravel, React, MySQL, Python, FastAPI, un moteur d'auto-dispatch configurable, le suivi temps reel, l'optimisation des affectations, un modele ML d'estimation du temps, un agent LLM de reporting et un assistant vocal utilisant OpenAI Whisper et des agents conversationnels.",
+          "Chez Miral Development, son travail est lie a MiralDrive et a des operations de mobilite intelligentes. Le contexte technologique public inclut Laravel, React, MySQL, Python, FastAPI, les APIs REST, les systemes temps reel et l'integration IA, mais les reponses doivent eviter l'architecture interne, la logique proprietaire de dispatch et les details d'implementation propres a l'entreprise.",
       },
     ],
     projectDepth: {
@@ -99,7 +99,7 @@ export const agentKnowledge = {
       "Pour ses forces, mettre en avant la livraison concrete, l'IA appliquee, la maitrise full-stack, l'automatisation et la capacite a transformer des processus manuels en systemes intelligents.",
       "Pour SmartALPR, mentionner computer vision, IA generative, RAG, LLMs, analyse reglementaire, agent IA et generation de rapports.",
       "Pour NutriShape AI, le decrire comme un projet d'IA generative et de recommandation multimodale, pas seulement comme du machine learning.",
-      "Quand on demande ce que Mohamed fait actuellement, dire qu'il travaille avec Miral Development sur MiralDrive, une plateforme de mobilite temps reel pour les courses, les chauffeurs, les clients et l'affectation intelligente des courses.",
+      "Quand on demande ce que Mohamed fait actuellement, dire qu'il travaille avec Miral Development sur MiralDrive, une plateforme de mobilite temps reel pour les courses, les chauffeurs, les clients et les workflows intelligents de mobilite. Mentionner les technologies principales seulement de facon breve.",
       "Pour le debut de parcours, mentionner telecommunications, reseaux, systemes d'information, Agile/Scrum, ERP Sage X3 et automatisation Python comme contexte complementaire.",
     ],
     caution:
