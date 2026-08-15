@@ -32,39 +32,38 @@ function readInitialLanguage() {
 
 function localizeData(baseData, vocab) {
   const overrides = vocab.data;
-  if (!overrides) return baseData;
 
   return {
     ...baseData,
     personalInfo: {
       ...baseData.personalInfo,
-      ...overrides.personalInfo,
+      ...(overrides?.personalInfo ?? {}),
       resumeUrl: assetUrl(baseData.personalInfo.resumeUrl),
     },
     branding: {
       ...baseData.branding,
-      ...overrides.branding,
+      ...(overrides?.branding ?? {}),
     },
     about: {
       ...baseData.about,
-      ...overrides.about,
+      ...(overrides?.about ?? {}),
     },
     experience: baseData.experience.map((item) => {
       const projectId = projectIdByName[item.project];
       return {
         ...item,
-        ...(overrides.experience?.[projectId] ?? {}),
+        ...(overrides?.experience?.[projectId] ?? {}),
         companyLogo: assetUrl(item.companyLogo),
       };
     }),
     projects: baseData.projects.map((project) => ({
       ...project,
-      ...(overrides.projects?.[project.id] ?? {}),
+      ...(overrides?.projects?.[project.id] ?? {}),
       image: assetUrl(project.image),
     })),
     education: baseData.education.map((item) => ({
       ...item,
-      ...(overrides.education?.[educationIdBySchool[item.school]] ?? {}),
+      ...(overrides?.education?.[educationIdBySchool[item.school]] ?? {}),
       schoolLogo: assetUrl(item.schoolLogo),
     })),
   };

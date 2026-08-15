@@ -7,5 +7,9 @@ export function assetUrl(path) {
   const normalizedBase = base.endsWith("/") ? base : `${base}/`;
   const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
 
+  if (path.startsWith(normalizedBase)) {
+    return path;
+  }
+
   return `${normalizedBase}${normalizedPath}`;
 }
