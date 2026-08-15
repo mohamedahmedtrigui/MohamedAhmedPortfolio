@@ -50,13 +50,95 @@ CAUTION:
 ${knowledge.caution}`;
 }
 
+const MIRALDRIVE_FORBIDDEN_TERMS = [
+  "architecture",
+  "architecture modulaire",
+  "modular",
+  "service-oriented",
+  "oriented service",
+  "oriented services",
+  "service oriented",
+  "service oriented architecture",
+  "couche",
+  "couches",
+  "layer",
+  "layers",
+  "microservice",
+  "micro-service",
+  "server-sent",
+  "sse",
+  "vroom",
+  "route optimization",
+  "routing optimization",
+  "optimisation de route",
+  "optimisation des routes",
+  "optimisation d'itineraire",
+  "optimisation des itineraires",
+  "demand forecasting",
+  "prevision de demande",
+  "prevision de la demande",
+  "automated dispatch",
+  "dispatch automatique",
+  "dispatch decisions",
+  "decisions de dispatch",
+  "decision automatique",
+  "decisions automatiques",
+  "traffic",
+  "trafic",
+  "demand patterns",
+  "business logic",
+  "logique metier",
+  "logique de dispatch",
+  "authentication",
+  "authentification",
+  "ride workflows",
+  "workflows de course",
+  "transactional consistency",
+  "coherence transactionnelle",
+  "real-time queries",
+  "requetes temps reel",
+];
+
+function normalizeForPolicyCheck(value) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function getPublicTechnologies(exp) {
+  if (exp.project === "MiralDrive") {
+    return "Laravel, React, MySQL, and AI components with Python/FastAPI";
+  }
+
+  return exp.technologies.join(", ");
+}
+
+function sanitizeAssistantResponse(content, language) {
+  const lowerContent = normalizeForPolicyCheck(content);
+  const mentionsMiralDrive = lowerContent.includes("miraldrive");
+  const exposesInternalDetails = MIRALDRIVE_FORBIDDEN_TERMS.some((term) =>
+    lowerContent.includes(normalizeForPolicyCheck(term))
+  );
+
+  if (mentionsMiralDrive && exposesInternalDetails) {
+    if (language === "fr") {
+      return "Mohamed travaille sur MiralDrive chez Miral Development, une plateforme de mobilite en temps reel orientee gestion des courses, chauffeurs et clients. Il contribue au developpement full-stack et a l'integration IA avec des technologies comme Laravel, React, MySQL et Python/FastAPI, tout en gardant les details internes propres a l'entreprise confidentiels.";
+    }
+
+    return "Mohamed is working on MiralDrive at Miral Development, a real-time mobility platform focused on rides, drivers, and clients. He contributes to full-stack development and AI integration with technologies such as Laravel, React, MySQL, and Python/FastAPI, while keeping company-specific internal details confidential.";
+  }
+
+  return content;
+}
+
 function buildSystemPrompt(data, languageInstruction, expandedKnowledge) {
   const { personalInfo, education, experience, skills, certifications, languages } = data;
 
   const experienceLines = experience
     .map(
       (exp, i) =>
-        `${i + 1}. ${exp.role} at ${exp.company} (${exp.period}). Project: ${exp.project}.\n   Details: ${exp.details}\n   Public technologies: ${exp.technologies.join(", ")}.`
+        `${i + 1}. ${exp.role} at ${exp.company} (${exp.period}). Project: ${exp.project}.\n   Details: ${exp.details}\n   Public technologies: ${getPublicTechnologies(exp)}.`
     )
     .join("\n");
 
@@ -114,7 +196,8 @@ RULES:
 - Mention the main public technologies used when a visitor asks about a project or Mohamed's role, but keep it concise and natural.
 - Speak mostly about Mohamed's role, contribution, product impact, business value, and ability to deliver useful intelligent software.
 - Do not provide dense technical implementation details, internal architecture, algorithms, dispatch logic, proprietary workflows, or company-specific operational details.
-- For MiralDrive, it is acceptable to say that Mohamed works with Laravel, React, MySQL, and AI components with Python/FastAPI, but do not go deeper unless the visitor explicitly asks.
+- For MiralDrive, it is acceptable to say that Mohamed works with Laravel, React, MySQL, and AI components with Python/FastAPI, but never describe the architecture, layers, services, routing logic, forecasting, automated decisions, SSE, VROOM, traffic handling, database optimization, or internal workflows.
+- Never mix AutoDispatch-specific technologies or details into MiralDrive.
 - If the visitor asks for technologies, summarize the stack in one short phrase instead of listing every tool exhaustively.
 - For general questions, answer directly first, then add only one useful supporting detail.
 - Always highlight and sell Mohamed Ahmed TRIGUI's profile, presenting his software engineering and AI expertise in the best possible light to attract recruiters.
@@ -205,9 +288,14 @@ export default function AIChatbot() {
       const data = await response.json();
 
       if (data.choices && data.choices[0]) {
+        const assistantContent = sanitizeAssistantResponse(
+          data.choices[0].message.content,
+          language
+        );
+
         setMessages([
           ...newMessages,
-          { role: "assistant", content: data.choices[0].message.content }
+          { role: "assistant", content: assistantContent }
         ]);
       } else {
         throw new Error("Invalid API response");

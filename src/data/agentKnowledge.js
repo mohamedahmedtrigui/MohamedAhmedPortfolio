@@ -3,7 +3,7 @@ export const agentKnowledge = {
     positioning:
       "Mohamed Ahmed TRIGUI is a software engineer specialized in Artificial Intelligence, positioned at the intersection of software engineering, full-stack product development, computer vision, generative AI, RAG systems, and intelligent agents.",
     currentStatus:
-      "Currently, Mohamed is working with Miral Development on MiralDrive, a mobility platform that manages rides, drivers, and clients in real time. MiralDrive includes intelligent tools to support ride assignment and improve mobility operations. When asked what Mohamed is currently doing, answer with MiralDrive as the current project, not AutoDispatch.",
+      "Currently, Mohamed is working with Miral Development on MiralDrive, a mobility platform that manages rides, drivers, and clients in real time. MiralDrive includes intelligent tools to support mobility operations. When asked what Mohamed is currently doing, answer with MiralDrive as the current project, not AutoDispatch.",
     profileNarrative:
       "His background combines six years of higher education across telecommunications, networks, software development, information systems, and artificial intelligence. This gives him a product-oriented engineering profile: he can understand a business need, design an architecture, build front-end and back-end systems, manage databases and APIs, and integrate AI models into real-world workflows.",
     educationContext: [
@@ -29,7 +29,7 @@ export const agentKnowledge = {
       {
         title: "MiralDrive and intelligent logistics context",
         details:
-          "At Miral Development, his work is connected to MiralDrive and intelligent mobility operations. The public technology context includes Laravel, React, MySQL, Python, FastAPI, REST APIs, real-time systems, and AI integration, but answers should avoid internal architecture, proprietary dispatch logic, and company-specific implementation details.",
+          "At Miral Development, his work is connected to MiralDrive and intelligent mobility operations. The public technology context can mention Laravel, React, MySQL, and AI components with Python/FastAPI. Answers must not disclose internal architecture, routing details, forecasting, automated decision logic, VROOM, SSE, database optimization, or company-specific implementation details.",
       },
     ],
     projectDepth: {
@@ -46,7 +46,7 @@ export const agentKnowledge = {
       "When asked about strengths, highlight practical delivery, applied AI, full-stack ownership, automation mindset, and ability to transform manual business processes into intelligent systems.",
       "When asked about SmartALPR, mention computer vision, generative AI, RAG, LLMs, regulatory analysis, AI agent capabilities, and report generation.",
       "When asked about NutriShape AI, describe it as a generative AI and multimodal recommendation project, not merely machine learning.",
-      "When asked what Mohamed is currently doing, say he is working with Miral Development on MiralDrive, a real-time mobility platform for rides, drivers, clients, and intelligent mobility workflows. Mention the main technologies only briefly.",
+      "When asked what Mohamed is currently doing, say he is working with Miral Development on MiralDrive, a real-time mobility platform for rides, drivers, clients, and intelligent mobility workflows. Mention Laravel, React, MySQL, and Python/FastAPI only briefly, without explaining how the system works internally.",
       "When asked about early background, mention telecommunications, networks, information systems, Agile/Scrum, ERP Sage X3, and Python automation only as supporting context.",
     ],
     caution:
@@ -56,7 +56,7 @@ export const agentKnowledge = {
     positioning:
       "Mohamed Ahmed TRIGUI est ingenieur logiciel specialise en Intelligence Artificielle, positionne a l'intersection du software engineering, du developpement full-stack, de la computer vision, de l'IA generative, des systemes RAG et des agents intelligents.",
     currentStatus:
-      "Actuellement, Mohamed travaille avec Miral Development sur MiralDrive, une plateforme de mobilite qui permet de gerer les courses, les chauffeurs et les clients en temps reel. MiralDrive integre des outils intelligents pour faciliter l'affectation des courses et ameliorer les operations. Quand on demande ce que Mohamed fait actuellement, repondre avec MiralDrive comme projet actuel, pas AutoDispatch.",
+      "Actuellement, Mohamed travaille avec Miral Development sur MiralDrive, une plateforme de mobilite qui permet de gerer les courses, les chauffeurs et les clients en temps reel. MiralDrive integre des outils intelligents pour accompagner les operations de mobilite. Quand on demande ce que Mohamed fait actuellement, repondre avec MiralDrive comme projet actuel, pas AutoDispatch.",
     profileNarrative:
       "Son parcours combine six annees d'etudes superieures entre telecommunications, reseaux, developpement logiciel, systemes d'information et intelligence artificielle. Cela lui donne un profil d'ingenieur oriente produit : il peut comprendre un besoin metier, concevoir une architecture, developper le front-end et le back-end, gerer les bases de donnees et les APIs, puis integrer des modeles IA dans des workflows reels.",
     educationContext: [
@@ -82,7 +82,7 @@ export const agentKnowledge = {
       {
         title: "MiralDrive et logistique intelligente",
         details:
-          "Chez Miral Development, son travail est lie a MiralDrive et a des operations de mobilite intelligentes. Le contexte technologique public inclut Laravel, React, MySQL, Python, FastAPI, les APIs REST, les systemes temps reel et l'integration IA, mais les reponses doivent eviter l'architecture interne, la logique proprietaire de dispatch et les details d'implementation propres a l'entreprise.",
+          "Chez Miral Development, son travail est lie a MiralDrive et a des operations de mobilite intelligentes. Le contexte technologique public peut mentionner Laravel, React, MySQL et des composants IA avec Python/FastAPI. Les reponses ne doivent pas divulguer l'architecture interne, les details de routage, la prediction de demande, la logique de decision automatique, VROOM, SSE, l'optimisation de base de donnees ou les details d'implementation propres a l'entreprise.",
       },
     ],
     projectDepth: {
@@ -99,7 +99,7 @@ export const agentKnowledge = {
       "Pour ses forces, mettre en avant la livraison concrete, l'IA appliquee, la maitrise full-stack, l'automatisation et la capacite a transformer des processus manuels en systemes intelligents.",
       "Pour SmartALPR, mentionner computer vision, IA generative, RAG, LLMs, analyse reglementaire, agent IA et generation de rapports.",
       "Pour NutriShape AI, le decrire comme un projet d'IA generative et de recommandation multimodale, pas seulement comme du machine learning.",
-      "Quand on demande ce que Mohamed fait actuellement, dire qu'il travaille avec Miral Development sur MiralDrive, une plateforme de mobilite temps reel pour les courses, les chauffeurs, les clients et les workflows intelligents de mobilite. Mentionner les technologies principales seulement de facon breve.",
+      "Quand on demande ce que Mohamed fait actuellement, dire qu'il travaille avec Miral Development sur MiralDrive, une plateforme de mobilite temps reel pour les courses, les chauffeurs, les clients et les workflows intelligents de mobilite. Mentionner Laravel, React, MySQL et Python/FastAPI seulement de facon breve, sans expliquer le fonctionnement interne du systeme.",
       "Pour le debut de parcours, mentionner telecommunications, reseaux, systemes d'information, Agile/Scrum, ERP Sage X3 et automatisation Python comme contexte complementaire.",
     ],
     caution:
