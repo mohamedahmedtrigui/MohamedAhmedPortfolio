@@ -3,6 +3,7 @@ import { portfolioData } from "../data/portfolioData";
 import { eng } from "./eng";
 import { fr } from "./fr";
 import { LanguageContext } from "./useLanguage";
+import { assetUrl } from "../utils/assetUrl";
 
 const VOCAB = { eng, fr };
 
@@ -33,6 +34,7 @@ function localizeData(baseData, vocab) {
     personalInfo: {
       ...baseData.personalInfo,
       ...overrides.personalInfo,
+      resumeUrl: assetUrl(baseData.personalInfo.resumeUrl),
     },
     branding: {
       ...baseData.branding,
@@ -47,15 +49,18 @@ function localizeData(baseData, vocab) {
       return {
         ...item,
         ...(overrides.experience?.[projectId] ?? {}),
+        companyLogo: assetUrl(item.companyLogo),
       };
     }),
     projects: baseData.projects.map((project) => ({
       ...project,
       ...(overrides.projects?.[project.id] ?? {}),
+      image: assetUrl(project.image),
     })),
     education: baseData.education.map((item) => ({
       ...item,
       ...(overrides.education?.[item.degree] ?? {}),
+      schoolLogo: assetUrl(item.schoolLogo),
     })),
   };
 }

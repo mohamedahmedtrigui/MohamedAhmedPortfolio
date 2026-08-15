@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowRight, Download, Linkedin, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
 import { scrollToSection } from "../utils/scroll";
+import { assetUrl } from "../utils/assetUrl";
 import { useLanguage } from "../vocab/useLanguage";
 
 export default function Hero() {
@@ -107,7 +108,7 @@ export default function Hero() {
               {vocab.hero.linkedin}
             </a>
             <a
-              href="/cv_Ahmed_Trigui_vf.pdf"
+              href={personalInfo.resumeUrl}
               download="CV_Mohamed_Ahmed_TRIGUI.pdf"
               className="flex items-center gap-2 text-sm font-semibold text-text-secondary hover:text-primary transition-colors duration-200"
             >
@@ -138,7 +139,7 @@ export default function Hero() {
                 </div>
               ) : (
                 <img
-                  src="/profile.png"
+                  src={assetUrl("/profile.png")}
                   alt="Mohamed Ahmed TRIGUI Portrait"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={() => setImgError(true)}
