@@ -29,6 +29,16 @@ export const portfolioData = {
   },
   experience: [
     {
+      role: "Full-Stack & AI Engineer",
+      company: "Miral Development",
+      location: "Sfax, Tunisia",
+      period: "July 2025 – Present",
+      project: "MiralDrive",
+      details: "Working on MiralDrive, a mobility platform for managing rides, drivers, and clients in real time. The platform includes intelligent tools to support ride assignment, improve dispatch operations, and streamline mobility workflows.",
+      technologies: ["Laravel", "React", "Python", "FastAPI", "MySQL", "REST API", "Real-Time Systems", "AI Integration"],
+      companyLogo: "/images/miral_.png"
+    },
+    {
       role: "Software Engineer Intern — Final Engineering Project",
       company: "Miral Development",
       location: "Sfax, Tunisia",

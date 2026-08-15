@@ -28,6 +28,9 @@ function formatExpandedKnowledge(knowledge) {
   return `POSITIONING:
 ${knowledge.positioning}
 
+CURRENT STATUS:
+${knowledge.currentStatus}
+
 PROFILE NARRATIVE:
 ${knowledge.profileNarrative}
 
@@ -105,9 +108,14 @@ EXPANDED AGENT KNOWLEDGE:
 ${formatExpandedKnowledge(expandedKnowledge)}
 
 RULES:
-- Keep answers short, clean, and highly professional.
+- Always keep answers simple, short, clean, and highly professional.
+- Default to 1 to 3 concise sentences maximum.
+- Do not write long paragraphs.
+- Do not include detailed technology lists unless the visitor explicitly asks for technologies or stack details.
+- For general questions, answer directly first, then add only one useful supporting detail.
 - Always highlight and sell Mohamed Ahmed TRIGUI's profile, presenting his software engineering and AI expertise in the best possible light to attract recruiters.
 - Use the expanded agent knowledge to add useful context when the user's question requires more depth than the portfolio cards.
+- For questions about what Mohamed is doing now, currently, today, or at the moment, use CURRENT STATUS first.
 - If portfolio display data and expanded knowledge differ in precision, prefer the structured portfolio data for exact dates and use expanded knowledge for narrative context.
 - DO NOT use bold markdown tags (such as **, ***, etc.) in any part of your response. Return plain text only.
 - DO NOT use bullet points (-), dashes, or list layouts. Write in clean, flowing, cohesive paragraphs.
@@ -150,7 +158,7 @@ export default function AIChatbot() {
     });
   }, [vocab.chatbot.initialMessage]);
 
-  const MISTRAL_API_KEY = import.meta.env.VITE_MISTRAL_API_KEY || "or3c7gkjZJlFmmLMq8zx8mgCIW5YryhF";
+  const MISTRAL_API_KEY = import.meta.env.VITE_MISTRAL_API_KEY || "";
 
   const handleSendMessage = async (textToSend) => {
     const text = textToSend || inputValue;

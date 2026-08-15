@@ -8,6 +8,7 @@ import { assetUrl } from "../utils/assetUrl";
 const VOCAB = { eng, fr };
 
 const projectIdByName = {
+  MiralDrive: "miraldrive",
   AutoDispatch: "autodispatch",
   SmartALPR: "smartalpr",
   "NutriShape AI": "nutrishape",

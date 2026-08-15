@@ -125,6 +125,11 @@ export const fr = {
       ],
     },
     experience: {
+      miraldrive: {
+        role: "Full-Stack & AI Engineer",
+        period: "Juillet 2025 - Present",
+        details: "Travaille sur MiralDrive, une plateforme de mobilite qui permet de gerer les courses, les chauffeurs et les clients en temps reel. La plateforme integre des outils intelligents pour faciliter l'affectation des courses, ameliorer les operations de dispatch et optimiser les workflows de mobilite.",
+      },
       autodispatch: {
         role: "Stagiaire Ingenieur Logiciel - Projet de fin d'etudes",
         period: "Fevrier 2026 - Juin 2026",

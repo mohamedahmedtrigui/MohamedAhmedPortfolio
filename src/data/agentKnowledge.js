@@ -2,6 +2,8 @@ export const agentKnowledge = {
   en: {
     positioning:
       "Mohamed Ahmed TRIGUI is a software engineer specialized in Artificial Intelligence, positioned at the intersection of software engineering, full-stack product development, computer vision, generative AI, RAG systems, and intelligent agents.",
+    currentStatus:
+      "Currently, Mohamed is working with Miral Development on MiralDrive, a mobility platform that manages rides, drivers, and clients in real time. MiralDrive includes intelligent tools to support ride assignment and improve mobility operations. When asked what Mohamed is currently doing, answer with MiralDrive as the current project, not AutoDispatch.",
     profileNarrative:
       "His background combines six years of higher education across telecommunications, networks, software development, information systems, and artificial intelligence. This gives him a product-oriented engineering profile: he can understand a business need, design an architecture, build front-end and back-end systems, manage databases and APIs, and integrate AI models into real-world workflows.",
     educationContext: [
@@ -39,10 +41,12 @@ export const agentKnowledge = {
         "SmartALPR is not only a computer vision project. It combines YOLO detection, OCR extraction, a RAG architecture connected to a large language model, and an AI agent able to analyze regulatory elements and generate structured reports.",
     },
     answerGuidance: [
+      "Always keep chatbot answers short and simple, usually one to three sentences.",
       "When asked for a general profile summary, present Mohamed as an end-to-end engineer who bridges business needs, software architecture, full-stack implementation, and AI integration.",
       "When asked about strengths, highlight practical delivery, applied AI, full-stack ownership, automation mindset, and ability to transform manual business processes into intelligent systems.",
       "When asked about SmartALPR, mention computer vision, generative AI, RAG, LLMs, regulatory analysis, AI agent capabilities, and report generation.",
       "When asked about NutriShape AI, describe it as a generative AI and multimodal recommendation project, not merely machine learning.",
+      "When asked what Mohamed is currently doing, say he is working with Miral Development on MiralDrive, a real-time mobility platform for rides, drivers, clients, and intelligent ride assignment.",
       "When asked about early background, mention telecommunications, networks, information systems, Agile/Scrum, ERP Sage X3, and Python automation only as supporting context.",
     ],
     caution:
@@ -51,6 +55,8 @@ export const agentKnowledge = {
   fr: {
     positioning:
       "Mohamed Ahmed TRIGUI est ingenieur logiciel specialise en Intelligence Artificielle, positionne a l'intersection du software engineering, du developpement full-stack, de la computer vision, de l'IA generative, des systemes RAG et des agents intelligents.",
+    currentStatus:
+      "Actuellement, Mohamed travaille avec Miral Development sur MiralDrive, une plateforme de mobilite qui permet de gerer les courses, les chauffeurs et les clients en temps reel. MiralDrive integre des outils intelligents pour faciliter l'affectation des courses et ameliorer les operations. Quand on demande ce que Mohamed fait actuellement, repondre avec MiralDrive comme projet actuel, pas AutoDispatch.",
     profileNarrative:
       "Son parcours combine six annees d'etudes superieures entre telecommunications, reseaux, developpement logiciel, systemes d'information et intelligence artificielle. Cela lui donne un profil d'ingenieur oriente produit : il peut comprendre un besoin metier, concevoir une architecture, developper le front-end et le back-end, gerer les bases de donnees et les APIs, puis integrer des modeles IA dans des workflows reels.",
     educationContext: [
@@ -88,10 +94,12 @@ export const agentKnowledge = {
         "SmartALPR n'est pas seulement un projet de computer vision. Il combine detection YOLO, extraction OCR, architecture RAG connectee a un LLM et agent IA capable d'analyser des elements reglementaires et de generer des rapports structures.",
     },
     answerGuidance: [
+      "Toujours garder les reponses du chatbot courtes et simples, generalement entre une et trois phrases.",
       "Pour une presentation generale, presenter Mohamed comme un ingenieur end-to-end capable de relier besoin metier, architecture logicielle, implementation full-stack et integration IA.",
       "Pour ses forces, mettre en avant la livraison concrete, l'IA appliquee, la maitrise full-stack, l'automatisation et la capacite a transformer des processus manuels en systemes intelligents.",
       "Pour SmartALPR, mentionner computer vision, IA generative, RAG, LLMs, analyse reglementaire, agent IA et generation de rapports.",
       "Pour NutriShape AI, le decrire comme un projet d'IA generative et de recommandation multimodale, pas seulement comme du machine learning.",
+      "Quand on demande ce que Mohamed fait actuellement, dire qu'il travaille avec Miral Development sur MiralDrive, une plateforme de mobilite temps reel pour les courses, les chauffeurs, les clients et l'affectation intelligente des courses.",
       "Pour le debut de parcours, mentionner telecommunications, reseaux, systemes d'information, Agile/Scrum, ERP Sage X3 et automatisation Python comme contexte complementaire.",
     ],
     caution:
